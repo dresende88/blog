@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel Noisss pranchaaaa caraiuuu
+                    Laravel {{$ip}}
                 </div>
 
                 <div class="links">
