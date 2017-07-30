@@ -1,12 +1,28 @@
-####
-# ATENTION:
 version: '2'
 
+volumes:
+    mysql-data:
+        driver: local
+
 services:
-  app:
-    image: ambientum/php:7.1-nginx
-    container_name: blog
-    volumes:
-      - .:/var/www/app
-    ports:
-      - "80:8080"
+    app:
+        image: ambientum/php:7.1-nginx
+        container_name: blog
+        volumes:
+            - .:/var/www/app
+        ports:
+            - "80:8080"
+        links:
+            - mysql
+    mysql:
+        image: ambientum/mysql:5.7
+        container_name: mysql
+        volumes:
+            - mysql-data:/var/lib/mysql
+        ports:
+            - "3306:3306"
+        environment:
+            - MYSQL_ROOT_PASSWORD=123456
+            - MYSQL_DATABASE=blog
+            - MYSQL_USER=blog
+            - MYSQL_PASSWORD=123
